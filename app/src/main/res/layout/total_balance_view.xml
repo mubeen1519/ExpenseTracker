@@ -35,7 +35,7 @@
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                tools:text="$23,103" />
+                tools:text="23,103" />
 
     </LinearLayout>
 

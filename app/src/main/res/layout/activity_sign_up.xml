@@ -10,6 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/uprectangle"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -90,6 +91,18 @@
                             android:inputType="textEmailAddress"
                             android:padding="15dp"
                             android:textSize="20sp" />
+<!--                    <EditText-->
+<!--                            android:id="@+id/username"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="10dp"-->
+<!--                            android:background="@drawable/edit_text_background"-->
+<!--                            android:hint="Username"-->
+<!--                            android:drawablePadding="10dp"-->
+<!--                            android:drawableStart="@drawable/person"-->
+<!--                            android:inputType="textEmailAddress"-->
+<!--                            android:padding="15dp"-->
+<!--                            android:textSize="20sp" />-->
 
                     <EditText
                             android:id="@+id/password"
@@ -99,7 +112,7 @@
                             android:background="@drawable/edit_text_background"
                             android:hint="Password"
                             android:drawablePadding="10dp"
-                            android:drawableStart="@drawable/lock"
+                            android:drawableStart="@drawable/loock"
                             android:inputType="textPassword"
                             android:padding="15dp"
                             android:textSize="20sp" />
@@ -112,7 +125,7 @@
                             android:background="@drawable/edit_text_background"
                             android:hint="Conform Password"
                             android:drawablePadding="10dp"
-                            android:drawableStart="@drawable/lock"
+                            android:drawableStart="@drawable/loock"
                             android:inputType="textPassword"
                             android:padding="15dp"
                             android:textSize="20sp" />

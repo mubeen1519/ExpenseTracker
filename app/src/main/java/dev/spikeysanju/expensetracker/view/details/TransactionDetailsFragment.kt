@@ -26,11 +26,10 @@ import dev.spikeysanju.expensetracker.databinding.FragmentTransactionDetailsBind
 import dev.spikeysanju.expensetracker.model.Transaction
 import dev.spikeysanju.expensetracker.utils.saveBitmap
 import dev.spikeysanju.expensetracker.utils.viewState.DetailState
+import dev.spikeysanju.expensetracker.view.add.AddTransactionFragment
 import dev.spikeysanju.expensetracker.view.base.BaseFragment
 import dev.spikeysanju.expensetracker.view.main.viewmodel.TransactionViewModel
 import hide
-import indianRupee
-import kotlinx.coroutines.flow.collect
 import show
 import snack
 
@@ -38,6 +37,8 @@ import snack
 class TransactionDetailsFragment : BaseFragment<FragmentTransactionDetailsBinding, TransactionViewModel>() {
     private val args: TransactionDetailsFragmentArgs by navArgs()
     override val viewModel: TransactionViewModel by activityViewModels()
+
+    var indianRupee = AddTransactionFragment()
 
     // handle permission dialog
     private val requestLauncher =
@@ -93,7 +94,8 @@ class TransactionDetailsFragment : BaseFragment<FragmentTransactionDetailsBindin
 
     private fun onDetailsLoaded(transaction: Transaction) = with(binding.transactionDetails) {
         title.text = transaction.title
-        amount.text = indianRupee(transaction.amount).cleanTextContent
+      //  amount.text = indianRupee.indianRupee(transaction.amount).cleanTextContent   //mychange
+        amount.text = transaction.amount.toString()  //mychange
         type.text = transaction.transactionType
         tag.text = transaction.tag
         date.text = transaction.date

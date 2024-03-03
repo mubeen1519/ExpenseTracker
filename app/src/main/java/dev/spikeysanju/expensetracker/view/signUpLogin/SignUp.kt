@@ -14,6 +14,7 @@ import com.google.firebase.firestore.firestore
 import dev.spikeysanju.expensetracker.R
 import dev.spikeysanju.expensetracker.databinding.ActivitySignUpBinding
 import dev.spikeysanju.expensetracker.model.User
+import dev.spikeysanju.expensetracker.view.main.MainActivity
 
 class SignUp : AppCompatActivity() {
 
@@ -57,6 +58,7 @@ class SignUp : AppCompatActivity() {
         val firebaseAuth  = Firebase.auth
         var db = Firebase.database
         var userData = User(
+
             name = binding.name.text.toString(),
             email= binding.emil.text.toString(),
             password = binding.password.text.toString()
@@ -74,7 +76,7 @@ class SignUp : AppCompatActivity() {
                 }
 
                // Toast.makeText(this, "Successfully create Account", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this,Login::class.java))
+                startActivity(Intent(this,MainActivity::class.java))
                 firebaseAuth.signOut()
             }
         }.addOnFailureListener {

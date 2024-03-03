@@ -9,10 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.spikeysanju.expensetracker.R
 import dev.spikeysanju.expensetracker.databinding.ItemTransactionLayoutBinding
 import dev.spikeysanju.expensetracker.model.Transaction
-import indianRupee
+import dev.spikeysanju.expensetracker.view.add.AddTransactionFragment
+
 
 class TransactionAdapter : RecyclerView.Adapter<TransactionAdapter.TransactionVH>() {
 
+    var indianRupee =AddTransactionFragment()
     inner class TransactionVH(val binding: ItemTransactionLayoutBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -55,7 +57,8 @@ class TransactionAdapter : RecyclerView.Adapter<TransactionAdapter.TransactionVH
                         )
                     )
 
-                    transactionAmount.text = "+ ".plus(indianRupee(item.amount))
+                   // transactionAmount.text = "+ ".plus(indianRupee.indianRupee(item.amount))  // my change
+                    transactionAmount.text = "+ ".plus(item.amount)  // my change
                 }
                 "Expense" -> {
                     transactionAmount.setTextColor(
@@ -64,7 +67,8 @@ class TransactionAdapter : RecyclerView.Adapter<TransactionAdapter.TransactionVH
                             R.color.expense
                         )
                     )
-                    transactionAmount.text = "- ".plus(indianRupee(item.amount))
+                    //transactionAmount.text = "- ".plus(indianRupee.indianRupee(item.amount))  //my change
+                    transactionAmount.text = "- ".plus(item.amount)  //my change
                 }
             }
 

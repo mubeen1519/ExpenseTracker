@@ -36,10 +36,10 @@ import dev.spikeysanju.expensetracker.services.exportcsv.OpenCsvContract
 import dev.spikeysanju.expensetracker.utils.viewState.ExportState
 import dev.spikeysanju.expensetracker.utils.viewState.ViewState
 import dev.spikeysanju.expensetracker.view.adapter.TransactionAdapter
+import dev.spikeysanju.expensetracker.view.add.AddTransactionFragment
 import dev.spikeysanju.expensetracker.view.base.BaseFragment
 import dev.spikeysanju.expensetracker.view.main.viewmodel.TransactionViewModel
 import hide
-import indianRupee
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import show
@@ -52,6 +52,8 @@ class DashboardFragment :
     BaseFragment<FragmentDashboardBinding, TransactionViewModel>() {
     private lateinit var transactionAdapter: TransactionAdapter
     override val viewModel: TransactionViewModel by activityViewModels()
+
+    val indianRupee = AddTransactionFragment()
 
     @Inject
     lateinit var themeManager: UIModeImpl
@@ -199,9 +201,13 @@ class DashboardFragment :
         val (totalIncome, totalExpense) = transaction.partition { it.transactionType == "Income" }
         val income = totalIncome.sumOf { it.amount }
         val expense = totalExpense.sumOf { it.amount }
-        incomeCardView.total.text = "+ ".plus(indianRupee(income))
-        expenseCardView.total.text = "- ".plus(indianRupee(expense))
-        totalBalanceView.totalBalance.text = indianRupee(income - expense)
+
+        //incomeCardView.total.text = "+ ".plus(indianRupee.indianRupee(income))               //mychange
+        incomeCardView.total.text = "+ ".plus(income)                                           //mychange
+       // expenseCardView.total.text = "- ".plus(indianRupee.indianRupee(expense))              //mychange
+        expenseCardView.total.text = "- ".plus(expense)                                         //mychange
+        //totalBalanceView.totalBalance.text = indianRupee.indianRupee(income - expense)        //mychange
+        totalBalanceView.totalBalance.text = (income - expense).toString()                       //mychange
     }
 
     private fun observeTransaction() = lifecycleScope.launchWhenStarted {
@@ -245,16 +251,16 @@ class DashboardFragment :
             findNavController().navigate(R.id.action_dashboardFragment_to_addTransactionFragment)
         }
 
-        mainDashboardScrollView.setOnScrollChangeListener(
-            NestedScrollView.OnScrollChangeListener { _, sX, sY, oX, oY ->
-                if (abs(sY - oY) > 10) {
-                    when {
-                        sY > oY -> btnAddTransaction.hide()
-                        oY > sY -> btnAddTransaction.show()
-                    }
-                }
-            }
-        )
+//        mainDashboardScrollView.setOnScrollChangeListener(
+//            NestedScrollView.OnScrollChangeListener { _, sX, sY, oX, oY ->
+//                if (abs(sY - oY) > 10) {
+//                    when {
+//                        sY > oY -> btnAddTransaction.hide()
+//                        oY > sY -> btnAddTransaction.show()
+//                    }
+//                }
+//            }
+//        )
 
         transactionAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {

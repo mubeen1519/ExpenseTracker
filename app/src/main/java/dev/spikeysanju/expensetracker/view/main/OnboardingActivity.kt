@@ -1,6 +1,8 @@
 package dev.spikeysanju.expensetracker.view.main
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.firebase.Firebase
@@ -16,14 +18,42 @@ class OnboardingActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
 
-        binding.button.setOnClickListener {
-            startActivity(Intent(this,SignUp::class.java))
+
+
+        if (isFirstTimeLaunch()){
+
+            setContentView(binding.root)
+
+            binding.button.setOnClickListener {
+                startActivity(Intent(this,SignUp::class.java))
+            }
+            binding.loginTextviewBtn.setOnClickListener {
+                startActivity(Intent(this,Login::class.java))
+            }
+            markFirstTimeLaunch(false)
+        }else{
+            startActivity(Intent(this,MainActivity::class.java))
         }
-        binding.loginTextviewBtn.setOnClickListener {
-            startActivity(Intent(this,Login::class.java))
-        }
+
+
+
+
+
+    }
+
+    private fun isFirstTimeLaunch():Boolean{
+
+        var sharedPreferences : SharedPreferences = getSharedPreferences("", Context.MODE_PRIVATE)
+        return sharedPreferences.getBoolean("isFirstTimeLaunch",true)
+    }
+
+    private fun markFirstTimeLaunch(isFirstTime : Boolean){
+
+        var sharedPreferences : SharedPreferences = getSharedPreferences("", Context.MODE_PRIVATE)
+        var editor = sharedPreferences.edit()
+        editor.putBoolean("isFirstTime",isFirstTime)
+        editor.apply()
 
     }
 
